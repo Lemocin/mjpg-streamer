@@ -62,7 +62,7 @@ add_subdirectory(plugins/input_httpout)
 #
 # Output plugins
 #
-
+add_subdirectory(plugins/output_file)
 add_subdirectory(plugins/output_http)
 
 
