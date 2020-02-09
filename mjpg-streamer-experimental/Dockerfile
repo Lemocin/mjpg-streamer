@@ -1,17 +1,17 @@
-FROM chunliu/docker-opencv
+FROM alpine
 
-MAINTAINER Chun Liu <https://github.com/chunliu>
-LABEL Description="A Docker image for mjpg_streamer." Version="0.3"
+MAINTAINER Kim Müller <https://github.com/Lemocin>
+LABEL Description="A minimal Docker image for mjpg_streamer." Version="0.4"
 
-# Build mjpg_streamer
-# Need to run container with the device: docker run -t -i -p 8080:8080/tcp --device=/dev/video0 image:tag
-RUN git clone https://github.com/jacksonliam/mjpg-streamer.git 
 
-WORKDIR /mjpg-streamer/mjpg-streamer-experimental
+COPY * /mjpeg_streamer
 
-RUN make \ 
-    && make install \
-    && chmod +x docker-start.sh
+WORKDIR /mjpg-streamer
+
+RUN apk add cmake make jpeg-dev gcc libgcc linux-headers 
+RUN make  
+RUN make install 
+RUN chmod +x docker-start.sh
 
 EXPOSE 8080/TCP
 
