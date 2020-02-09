@@ -17,4 +17,4 @@ EXPOSE 8080/TCP
 
 ENTRYPOINT ["/mjpg-streamer/mjpg-streamer-experimental/docker-start.sh", "output_http.so -w ./www"]
 
-CMD ["input_uvc.so"]
+CMD ["input_httpout.so -H pizero -p 8080"]
